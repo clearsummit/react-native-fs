@@ -345,7 +345,10 @@ RCT_EXPORT_METHOD(downloadFile:(NSDictionary *)options
     if(!statusCode) statusCode = @(404);
     if(!bytesWritten) bytesWritten = @(0);
 
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] initWithDictionary: @{@"jobId": jobId}];
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if (jobId) {
+        [result setObject:jobId forKey: @"jobId"];
+    }
     if (statusCode) {
       [result setObject:statusCode forKey: @"statusCode"];
     }
